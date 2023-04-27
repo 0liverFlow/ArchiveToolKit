@@ -131,19 +131,19 @@ decompress_file(){
 	echo -e "${BOLDCYAN}[*] Starting decompression...${NO_COLOR}"
 	case $compression_algorithm in
 		"gzip")
-			if [[ $compression_algorithm == *.tar.gz ]]
+			if [[ $compression_filename == *.tar.gz ]]
 			then
 				tar -zxf "$compressed_filename" -C $file_parent_directory
-			elif [[ $compression_algorithm == *.gz ]]
+			elif [[ $compression_filename == *.gz ]]
 			then
 				gunzip $compressed_filename > "$file_parent_directory/$output_filename" 
 			fi
 			;;
 		"bzip2")
-			if [[ $compression_algorithm == *.tar.bz2 ]]
+			if [[ $compression_filename == *.tar.bz2 ]]
 			then
 				tar -jxf "$compressed_filename" -C $file_parent_directory
-			elif [[ $compression_algorithm == *.bz2 ]]
+			elif [[ $compression_filename == *.bz2 ]]
 			then
 				bunzip $compressed_filename > "$file_parent_directort/$output_filename"
 			fi
