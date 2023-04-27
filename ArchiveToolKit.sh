@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Colors and fonts
-GREEN="\e[1,32m"
-YELLOW="\e[1,33m"
-RED="\e[1,31m"
+GREEN="\e[1;32m"
+YELLOW="\e[1;33m"
+RED="\e[1;31m"
 CYAN="\e[36m"
 NO_COLOR="\e[0m"
 UNDERLINE="\e[4m"
