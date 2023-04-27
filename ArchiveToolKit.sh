@@ -16,7 +16,7 @@ usage(){
 	echo -e "\nOptions:"
 	echo -e "-c [compression_algorithm] DIR		# Compress 'DIR' using the specified compression algorithm (zip is used by default).
 	echo -e "-d ARCHIVE"				# Decompress an archive.
-	echo -e "-e [NO_ARGS] FILE|ARCHIVE	# Encrypt a file or archive using AES256 algorithm."
+	echo -e "-e [NO_ARGS] FILE|ARCHIVE"	# Encrypt a file or archive using AES256 algorithm.
 	echo -e "\nExamples:"
 	echo -e "\n${UNDERLINE}COMPRESSION${NO_COLOR}" 
 	echo "ArchiveToolKit -c mydir       	# Compress 'mydir' using zip compression algorithm"
