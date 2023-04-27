@@ -310,6 +310,7 @@ ${NO_COLOR}\n"
 			elif [[ $1 == "-c" && $2 == "-e" && -d $3 ]]
 			then
 				compress_file $file_to_compress
+				echo "----------------------------------------------------"
 				encrypt_file $dest_dir
 			elif [[ -z $file_extension ]]
 			then
@@ -327,6 +328,7 @@ ${NO_COLOR}\n"
 			if [[ $1 == "-c" && -n $file_extension  && $3 == "-e" && -d $4 ]]
 			then
 				compress_file $file_to_compress $file_extension
+				echo "----------------------------------------------------"
 				encrypt_file $dest_dir
 			elif [[ -z $file_extension ]]
 			then
