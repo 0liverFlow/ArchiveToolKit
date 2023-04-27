@@ -1,26 +1,27 @@
 #!/bin/bash
 
 # Colors and fonts
-GREEN="\e[32m"
-YELLOW="\e[33m"
-RED="\e[31m"
+GREEN="\e[1,32m"
+YELLOW="\e[1,33m"
+RED="\e[1,31m"
 CYAN="\e[36m"
 NO_COLOR="\e[0m"
 UNDERLINE="\e[4m"
 
 # Script usage
 usage(){
-	echo -e "Usage: ArchiveToolKit OPTION(S) DIRECTORY|FILE"
+	echo -e "Usage: ArchiveToolKit OPTION.S FOLDER|FILE"
 	echo -e "\nA handy script for managing (compressing, decompressing, listing, encrypting, decrypting) your archives."
-	echo -e "\nOptions:"
+	echo -e "\nMandatory arguments:"
 	echo -e "-c [compression_algorithm] DIR	# Compress 'DIR' using 'compression algorithm' if specified. By default, it will use zip."
 	echo -e "-d ARCHIVE	# Decompress an archive using a given archive."
+	
 	echo -e "-e [NO_ARGS] FILE	# Encrypt a file using the AES256 symmetric key encryption"
 	echo -e "\nExamples:"
 	echo -e "\n${UNDERLINE}COMPRESSION${NO_COLOR}" 
 	echo "ArchiveToolKit -c mydir       	# Compress 'mydir' using zip compression algorithm"
-	echo "ArchiveToolKit -c bzip2 mydir	# Compress a directory using bzip2 compression algorithm"
-	echo "ArchiveToolKit -c gzip -e mydir	# Compress then encrypt a directory using gzip and AES256 respectively."
+	echo "ArchiveToolKit -c bz2 mydir	# Compress a directory using bzip2 compression algorithm"
+	echo "ArchiveToolKit -c gz -e mydir	# Compress then encrypt a directory using gzip and AES256 respectively."
 	echo -e "\n${UNDERLINE}DECOMPRESSION${NO_COLOR}"
 	echo "ArchiveToolKit -d my_archive.tar.gz  # Decompress 'my_archive.tar.gz'"
 	echo "NOTE: The decompression algorithm is not required."
@@ -200,7 +201,7 @@ decompression_error_message(){
 compression_error_message(){
 	local compression_algorithm=$1
 	echo -e "${RED}[-]${NO_COLOR} $compression_algorithm: Unknown compression algorithm specified!"
-	echo "Supported compression algorithms are: zip(default), gzip and bzip2."
+	echo "Supported compression algorithms are: zip (default), gzip and bzip2."
 	usage
 }
 
@@ -222,7 +223,7 @@ ${NO_COLOR}\n"
 	#echo ${args_tab[@]}
 	if [[ -z $args_tab ]]
 	then 
-		echo -e "${RED}[-]${NO_COLOR}ArchiveToolKit: Missing arguments!"
+		echo -e "${RED}[-]${NO_COLOR} ArchiveToolKit: Missing arguments!\n"
 		usage
 		exit 1 
 	else
@@ -240,7 +241,7 @@ ${NO_COLOR}\n"
 			then
 				usage
 			else
-				echo -e "${RED}[-]${NO_COLOR} $1: Incorrect argument specified!"
+				echo -e "${RED}[-]${NO_COLOR} $1: Incorrect argument specified!\n"
 				usage
 				exit 1
 			fi
@@ -263,8 +264,8 @@ ${NO_COLOR}\n"
 					decrypt_file $2 $output_filename
 					if  [[ $? == 100 ]]
 					then
-						echo "[-] Decryption failed!"
-						echo "[!] Exiting the script..."
+						echo -e "${RED}[-]${NO_COLOR} Decryption failed!"
+						echo -e "${YELLOW}[!]${NO_COLOR} Exiting the script..."
 						sleep 2
 						exit 1
 					fi
@@ -279,7 +280,7 @@ ${NO_COLOR}\n"
 					fi
 				elif [[ $1 == "-d" && ! -n $file_extension ]]
 				then
-					echo -e "${RED}[-]${NO_COLOR} Unsupported file format!"
+					echo -e "${RED}[-]${NO_COLOR} Unsupported file format!\n"
 					usage
 				elif [[ $1 == "-c" && ! -d $2 ]]
 				then
@@ -295,14 +296,14 @@ ${NO_COLOR}\n"
 				then
 					list_archive_content $file_extension $2
 				else
-					echo "${RED}[-]${NO_COLOR} $2: Incorrect argument specified!" 
+					echo "${RED}[-]${NO_COLOR} $2: Incorrect argument specified!\n" 
 					usage 
 					exit 1
 				fi
 			fi
 			;;
 		3) 
-			get_file_extension $2 
+			get_file_extension $2
 			# $2 represents the compression algorithm specified by the user
 			if [[ $1 == "-c" && -n $file_extension && -d $3 ]]
 			then
@@ -334,13 +335,13 @@ ${NO_COLOR}\n"
 			elif [[ ! -d $4 ]]
 			then
 				echo -e "${RED}[-]${NO_COLOR} $4 does not exist!"
-				echo -e "${RED}[-]${NO_COLOR} Syntax Error: Incorrect command_"
+				echo -e "${RED}[-]${NO_COLOR} Syntax Error: Incorrect command!\n"
 				usage
 				exit 1
 			fi
 			;;			
 		*)
-			echo -e "${RED}[-]${NO_COLOR} Syntax Error: Incorrect command!"
+			echo -e "${RED}[-]${NO_COLOR} Syntax Error: Incorrect command!\n"
 			usage
 			exit 1
 			;;
