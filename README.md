@@ -36,14 +36,31 @@ These are some examples that can help you better understand how ArchiveToolKit w
 <p>The following command will use <b>zip</b> to compress the specified directory. <p>
 <img width="1199" alt="image" src="https://user-images.githubusercontent.com/64969369/234930514-97f23878-8e6b-45bb-92fa-f22789781ed7.png"> <br>
 <p>⚠️: <b>zip</b> is used by default if no compression algorithm is specified.</p>
+
 ### Compress a directory using a specific compression algorithm
 <p>In this example, we're going to compress a directory using the <b>bzip2</b> algorithm<p>
+ 
 ![image](https://user-images.githubusercontent.com/64969369/234934381-0268a335-9b24-4f16-bc71-623d87fee7f4.png)
-<p>Here, you need to keep in mind that <b>bz2</b> is used to specify the <b>bzip2</b> algorithm, while  <b>gz</b> is used for the  <b>gzip</b> algorithm.</p><br>
+<p>Here, you need to keep in mind that <b>bz2</b> is used to specify the <b>bzip2</b> algorithm, while  <b>gz</b> is used for the  <b>gzip</b> algorithm.</p>
+
 ### Compress and Encrypt a directory
 <p>For that, you need to specify the <b>-c</b> option followed by <b>-e</b> option as follows:
  <img width="1391" alt="image" src="https://user-images.githubusercontent.com/64969369/234936055-0bdb2324-53d8-418e-9119-f6ddd011f7c9.png">
 <p>As you can see, the command above first compressed then encrypted the directory specified as argument</p>
-<p> Note📝: It is absolutely possible to remove the compressed directory if you only want to keep the encrypted format.</p><br>
-### Decompress a compressed archive
+<p><b>NOTE📝:</b> It is absolutely possible to remove the compressed directory if you only want to keep the encrypted format.</p>
 
+### Decompress a compressed archive
+<p>In this example, we simply decompressed  a compressed archive using the <b>-d</b> option.</p>
+
+<img width="1337" alt="image" src="https://user-images.githubusercontent.com/64969369/234940061-206a6ede-7f28-4d68-99b2-a2edd433f19b.png">
+
+<p>As you can see, <b>the decompression algorithm is not required at all</b>. In fact, the script will automatically detect the algorithm type based on the file extension.</p>
+<p><b>NOTE📝:</b> <b>If the archive was encrypted</b>, you would have been asked to firstly enter the decryption key before the decompression phase.</p>
+
+### List an archive content without extracting it 
+<p>Listing an archive's content before extracting it, is always a good practice see that it can allow you to have a view of what's really inside the archive.</p>
+
+<img width="1053" alt="image" src="https://user-images.githubusercontent.com/64969369/234941788-2d075d54-970e-4800-8f4b-db19d7d4694a.png">
+
+<p>As you can see on the screenshot above,  we got the content of <b>mydir.tar.gz</b> archive without extracting its content. <p/>
+<p> Feel free to use the <b>-h</b> option to get more information about ArchiveToolKit's features 😉. <p/>
