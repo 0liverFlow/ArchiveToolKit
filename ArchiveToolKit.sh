@@ -162,7 +162,7 @@ decompress_file(){
 list_archive_content(){
 	local compression_algorithm=$1
 	local compressed_filename=$2
-	echo "[+] Listing $compressed_filename content..."
+	echo -e "${BOLDCYAN}[*] Listing $compressed_filename content...${NO_COLOR}"
 	case $compression_algorithm in
 		"zip")	
 			unzip -l $compressed_filename;;
