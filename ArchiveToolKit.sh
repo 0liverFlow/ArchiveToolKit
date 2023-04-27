@@ -5,6 +5,7 @@ GREEN="\e[1;32m"
 YELLOW="\e[1;33m"
 RED="\e[1;31m"
 CYAN="\e[36m"
+BOLDCYAN="\e[1;36m"
 NO_COLOR="\e[0m"
 UNDERLINE="\e[4m"
 
@@ -39,7 +40,7 @@ usage(){
 # Encrypt a compressed archive using gpg symetric key
 encrypt_file(){
 	local unencrypted_file=$1
-	echo -e "${GREEN}[+]${NO_COLOR} Starting encryption..."
+	echo -e "${BOLDCYAN}[*] Starting encryption...${NO_COLOR}"
 	gpg --no-symkey-cache --cipher-algo AES256 -c "$unencrypted_file"
 	if [[ $? -eq 0 ]]
 	then
@@ -60,7 +61,7 @@ encrypt_file(){
 decrypt_file(){
 	local encrypted_filename=$1
 	local output_filename=$2
-	echo "[+] Starting decryption..."
+	echo -e "${BOLDCYAN}[*] Starting decryption...${NO_COLOR}"
 	while true
 	do
 		gpg -o $output_filename -d $encrypted_filename
@@ -105,7 +106,7 @@ compress_file(){
 	local directory_to_compress=$1
 	local compression_algorithm=$2
 	dest_dir=""
-	echo -e "${GREEN}[+]${NO_COLOR} Starting compression..."
+	echo -e "${BOLDCYAN}[*] Starting compression...${NO_COLOR}"
 	case $compression_algorithm in
 		"gzip")
 			dest_dir=$directory_to_compress.tar.gz
@@ -127,7 +128,7 @@ decompress_file(){
 	local compression_algorithm=$1
 	local compressed_filename=$2
 	local output_filename=${compressed_filename%.*}
-	echo "[+] Starting decompression..."
+	echo -e "${BOLDCYAN}[*] Starting decompression...${NO_COLOR}"
 	case $compression_algorithm in
 		"gzip")
 			if [[ $compression_algorithm == *.tar.gz ]]
@@ -258,8 +259,6 @@ ${NO_COLOR}\n"
 				elif [[ $file_extension == "gpg" ]]
 				then
 					output_filename=$(echo ${2%.*})
-				       	echo $output_filename	
-
 					decrypt_file $2 $output_filename
 					if  [[ $? == 100 ]]
 					then
@@ -273,6 +272,7 @@ ${NO_COLOR}\n"
 					get_file_extension $output_filename_extension
 					if [[ -n $file_extension ]]
 					then
+						echo "--------------------------------------------------------"
 						decompress_file $file_extension $output_filename
 					else
 						decompression_error_message $output_filename
@@ -310,7 +310,7 @@ ${NO_COLOR}\n"
 			elif [[ $1 == "-c" && $2 == "-e" && -d $3 ]]
 			then
 				compress_file $file_to_compress
-				echo "----------------------------------------------------"
+				echo "--------------------------------------------------------"
 				encrypt_file $dest_dir
 			elif [[ -z $file_extension ]]
 			then
@@ -328,7 +328,7 @@ ${NO_COLOR}\n"
 			if [[ $1 == "-c" && -n $file_extension  && $3 == "-e" && -d $4 ]]
 			then
 				compress_file $file_to_compress $file_extension
-				echo "----------------------------------------------------"
+				echo "--------------------------------------------------------"
 				encrypt_file $dest_dir
 			elif [[ -z $file_extension ]]
 			then
