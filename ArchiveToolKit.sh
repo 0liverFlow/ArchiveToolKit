@@ -11,7 +11,7 @@ UNDERLINE="\e[4m"
 
 # Script usage
 usage(){
-	echo -e "Usage: ArchiveToolKit OPTION.S FOLDER|FILE"
+	echo -e "Usage: ArchiveToolKit OPTIONS FOLDER|FILE"
 	echo -e "\nDescription: A handy script for managing your archives."
 	echo -e "\nOptions:"
 	echo -e "-c [compression_algorithm] DIR		# Compress 'DIR' using the specified compression algorithm."
