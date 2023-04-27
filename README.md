@@ -39,11 +39,11 @@ These are some examples that can help you better understand how ArchiveToolKit w
 ### Compress a directory using a specific compression algorithm
 <p>In this example, we're going to compress a directory using the <b>bzip2</b> algorithm<p>
 ![image](https://user-images.githubusercontent.com/64969369/234934381-0268a335-9b24-4f16-bc71-623d87fee7f4.png)
-<p>Here, you need to keep in mind that <b>bz2</b> is used to specify the <b>bzip2</b> algorithm, while  <b>gz</b> is used for the  <b>gzip</b> algorithm.</p>
+<p>Here, you need to keep in mind that <b>bz2</b> is used to specify the <b>bzip2</b> algorithm, while  <b>gz</b> is used for the  <b>gzip</b> algorithm.</p><br>
 ### Compress and Encrypt a directory
 <p>For that, you need to specify the <b>-c</b> option followed by <b>-e</b> option as follows:
  <img width="1391" alt="image" src="https://user-images.githubusercontent.com/64969369/234936055-0bdb2324-53d8-418e-9119-f6ddd011f7c9.png">
 <p>As you can see, the command above first compressed then encrypted the directory specified as argument</p>
-<p> Note📝: It is absolutely possible to remove the compressed directory if you only want to keep the encrypted format.</p>
-### 
+<p> Note📝: It is absolutely possible to remove the compressed directory if you only want to keep the encrypted format.</p><br>
+### Decompress a compressed archive
 
