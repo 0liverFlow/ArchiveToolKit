@@ -14,8 +14,7 @@ usage(){
 	echo -e "\nDescription: A handy script for managing your archives."
 	echo -e "\nOptions:"
 	echo -e "-c [compression_algorithm] DIR		# Compress 'DIR' using the specified compression algorithm (zip is used by default).
-	echo -e "-d ARCHIVE				# Decompress an archive."
-	
+	echo -e "-d ARCHIVE"				# Decompress an archive.
 	echo -e "-e [NO_ARGS] FILE|ARCHIVE	# Encrypt a file or archive using AES256 algorithm."
 	echo -e "\nExamples:"
 	echo -e "\n${UNDERLINE}COMPRESSION${NO_COLOR}" 
@@ -26,7 +25,7 @@ usage(){
 	echo "ArchiveToolKit -d my_archive.tar.gz  # Decompress 'my_archive.tar.gz'"
 	echo -e "${UNDERLINE}NOTE:${NO_COLOR} The decompression algorithm is not required."
 	echo -e "\n${UNDERLINE}ENCRYPTION${NO_COLOR}"
-	echo "ArchiveToolKit -e my_archive	# Encrypt 'my_archive' using the AES256 symmetric key algorithm"
+	echo "ArchiveToolKit -e my_archive	# Encrypt 'my_archive' using the AES256 algorithm"
 	echo -e "\n${UNDERLINE}LISTING ARCHIVE CONTENT${NO_COLOR}"
 	echo "ArchiveToolKit -l archive	# List an archive's content"
 	echo -e "\n${UNDERLINE}${RED}NOTES${NO_COLOR}"
