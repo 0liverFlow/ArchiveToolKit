@@ -272,7 +272,7 @@ ${NO_COLOR}\n"
 					get_file_extension $output_filename_extension
 					if [[ -n $file_extension ]]
 					then
-						echo "--------------------------------------------------"
+						echo "------------------------------------------------------"
 						decompress_file $file_extension $output_filename
 					else
 						decompression_error_message $output_filename
@@ -315,7 +315,7 @@ ${NO_COLOR}\n"
 			elif [[ $1 == "-c" && $2 == "-e" && -d $3 ]]
 			then
 				compress_file $file_to_compress
-				echo "--------------------------------------------------"
+				echo "------------------------------------------------------"
 				encrypt_file $dest_dir
 			elif [[ -z $file_extension ]]
 			then
@@ -333,7 +333,7 @@ ${NO_COLOR}\n"
 			if [[ $1 == "-c" && -n $file_extension  && $3 == "-e" && -d $4 ]]
 			then
 				compress_file $file_to_compress $file_extension
-				echo "--------------------------------------------------"
+				echo "------------------------------------------------------"
 				encrypt_file $dest_dir
 			elif [[ -z $file_extension ]]
 			then
