@@ -38,7 +38,7 @@ usage(){
 # Encrypt a compressed archive using gpg symetric key
 encrypt_file(){
 	local unencrypted_file=$1
-	echo "[+] Starting encryption..."
+	echo -e "${GREEN}[+]${NO_COLOR} Starting encryption..."
 	gpg --no-symkey-cache --cipher-algo AES256 -c "$unencrypted_file"
 	if [[ $? -eq 0 ]]
 	then
@@ -80,9 +80,9 @@ decrypt_file(){
 	done
 }
 
-# Function to get a compressed file extension
+# Function to get a file extension
 get_file_extension(){
-	input_file_extension=$(echo ${1##*.})
+	local input_file_extension=$(echo ${1##*.})
 	case $input_file_extension in
 		"zip")
 			file_extension="zip";;
@@ -103,9 +103,8 @@ get_file_extension(){
 compress_file(){
 	local directory_to_compress=$1
 	local compression_algorithm=$2
-	echo directory to compress is $directory_to_compress
 	dest_dir=""
-	echo "[+] Starting compression..."
+	echo -e "${GREEN}[+]${NO_COLOR} Starting compression..."
 	case $compression_algorithm in
 		"gzip")
 			dest_dir=$directory_to_compress.tar.gz
@@ -115,12 +114,11 @@ compress_file(){
 			tar -jcf $dest_dir $directory_to_compress;;
 		"zip" | "")
 			dest_dir=$directory_to_compress.zip
-			echo dest_dir is $dest_dir
 			zip -r $dest_dir $directory_to_compress;;
 	esac
 	dest_dir_absolute_path=$(readlink -f $(dirname $dest_dir))
-	echo "[+] $directory_to_compress sucessfully compressed!"
-	echo "[+] Compressed directory saved in $dest_dir_absolute_path"
+	echo -e "${GREEN}[+]${NO_COLOR} $directory_to_compress sucessfully compressed!"
+	echo -e "${GREEN}[+]${NO_COLOR} Compressed directory saved in $dest_dir_absolute_path"
 }
 
 # Function for decompressing a compressed file
@@ -154,8 +152,8 @@ decompress_file(){
 		"rar")
 			unrar x "$compressed_filename" $file_parent_directory;;
 	esac
-	echo "[+] $compressed_filename successfully decompressed!"
-	echo "[+] Decompressed file saved in $(readlink -f $file_parent_directory)"
+	echo -e "${GREEN}[+]${NO_COLOR} $compressed_filename successfully decompressed!"
+	echo -e "${GREEN}[+]${NO_COLOR} Decompressed file saved in $(readlink -f $file_parent_directory)"
 }
 
 # List  an archive content
@@ -194,7 +192,7 @@ decompression_error_message(){
 	local filename=$1
 	echo -e "${RED}[-]${NO_COLOR} ${filename##*.}: Unsupported file format specified!"
 	echo "Supported file formats for decompression are: .zip, .gz, .bz2 and .rar"
-	echo "Enter 'ArchiveToolKit --help' or 'ArchiveToolKit --usage' for more information."
+	usage
 }
 
 # Compression error message
@@ -202,7 +200,7 @@ compression_error_message(){
 	local compression_algorithm=$1
 	echo -e "${RED}[-]${NO_COLOR} $compression_algorithm: Unknown compression algorithm specified!"
 	echo "Supported compression algorithms are: zip(default), gzip and bzip2."
-	echo "Try '$0 -h', '$0 --help' or '$0 --usage' for more information."
+	usage
 }
 
 # Main function
@@ -211,8 +209,8 @@ main(){
 	#echo ${args_tab[@]}
 	if [[ -z $args_tab ]]
 	then 
-		echo "ArchiveToolKit: Missing arguments!"
-		echo "Try '$0 -h', '$0 --help' or '$0 --usage' for more information."
+		echo -e "${RED}[-]${NO_COLOR}ArchiveToolKit: Missing arguments!"
+		usage
 		exit 1 
 	else
 		file_to_compress=$(echo ${args_tab[-1]} | sed 's/\/$//')
@@ -229,8 +227,8 @@ main(){
 			then
 				usage
 			else
-				echo "[-] $1: Incorrect argument specified!"
-				echo "Try '$0 -h', '$0 --help' or '$0 --usage' for more information."
+				echo -e "${RED}[-]${NO_COLOR} $1: Incorrect argument specified!"
+				usage
 				exit 1
 			fi
 			;;
