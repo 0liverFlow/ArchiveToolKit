@@ -291,7 +291,7 @@ ${NO_COLOR}\n"
 			elif [[ $1 == "-l" && -f $2 ]]
 			then
 				get_file_extension $2
-				if [[ -n $file_extension && $extension_found != "gpg" ]]
+				if [[ -n $file_extension && $file_extension != "gpg" ]]
 				then
 					list_archive_content $file_extension $2
 				else
