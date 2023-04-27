@@ -11,12 +11,12 @@ UNDERLINE="\e[4m"
 # Script usage
 usage(){
 	echo -e "Usage: ArchiveToolKit OPTION.S FOLDER|FILE"
-	echo -e "\nA handy script for managing (compressing, decompressing, listing, encrypting, decrypting) your archives."
-	echo -e "\nMandatory arguments:"
-	echo -e "-c [compression_algorithm] DIR	# Compress 'DIR' using 'compression algorithm' if specified. By default, it will use zip."
-	echo -e "-d ARCHIVE	# Decompress an archive using a given archive."
+	echo -e "\nDescription: A handy script for managing your archives."
+	echo -e "\nOptions:"
+	echo -e "-c [compression_algorithm] DIR		# Compress 'DIR' using the specified compression algorithm (zip is used by default).
+	echo -e "-d ARCHIVE				# Decompress an archive."
 	
-	echo -e "-e [NO_ARGS] FILE	# Encrypt a file using the AES256 symmetric key encryption"
+	echo -e "-e [NO_ARGS] FILE|ARCHIVE	# Encrypt a file or archive using AES256 algorithm."
 	echo -e "\nExamples:"
 	echo -e "\n${UNDERLINE}COMPRESSION${NO_COLOR}" 
 	echo "ArchiveToolKit -c mydir       	# Compress 'mydir' using zip compression algorithm"
@@ -24,7 +24,7 @@ usage(){
 	echo "ArchiveToolKit -c gz -e mydir	# Compress then encrypt a directory using gzip and AES256 respectively."
 	echo -e "\n${UNDERLINE}DECOMPRESSION${NO_COLOR}"
 	echo "ArchiveToolKit -d my_archive.tar.gz  # Decompress 'my_archive.tar.gz'"
-	echo "NOTE: The decompression algorithm is not required."
+	echo -e "${UNDERLINE}NOTE:${NO_COLOR} The decompression algorithm is not required."
 	echo -e "\n${UNDERLINE}ENCRYPTION${NO_COLOR}"
 	echo "ArchiveToolKit -e my_archive	# Encrypt 'my_archive' using the AES256 symmetric key algorithm"
 	echo -e "\n${UNDERLINE}LISTING ARCHIVE CONTENT${NO_COLOR}"
