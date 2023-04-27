@@ -248,13 +248,13 @@ ${NO_COLOR}\n"
 		2)
 			if [[ $1 == "-c" && -d $2 ]]
 			then
-				compress_file $2
+				compress_file $file_to_compress
 			elif [[ $1 == "-d" && -f $2 ]]
 			then
 				get_file_extension $2
 				if [[ -n $file_extension && $file_extension != "gpg" ]]
 				then
-					decompress_file $file_extension $2 
+					decompress_file $file_extension $2
 				elif [[ $file_extension == "gpg" ]]
 				then
 					output_filename=$(echo ${2%.*})
