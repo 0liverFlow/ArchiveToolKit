@@ -284,6 +284,7 @@ ${NO_COLOR}\n"
 				elif [[ $1 == "-c" && ! -d $2 ]]
 				then
 					echo "${RED}[-]${NO_COLOR} $2 must be a directory!"
+					exit 1
 				fi
 			elif [[ $1 == "-e" && -f $2 ]]
 			then
@@ -299,6 +300,10 @@ ${NO_COLOR}\n"
 					usage 
 					exit 1
 				fi
+			else
+				echo -e "${RED}[-]${NO_COLOR} Syntax Error: Incorrect argument specified!\n"
+				usage
+				exit 1
 			fi
 			;;
 		3) 
