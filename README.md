@@ -64,3 +64,7 @@ These are some examples that can help you better understand how ArchiveToolKit w
 
 <p>As you can see on the screenshot above,  we got the content of <b>mydir.tar.gz</b> archive without extracting its content. <p/>
 <p> Feel free to use the <b>-h</b> option to get more information about ArchiveToolKit's features 😉. <p/>
+
+## Contribution
+1. If you noticed any bugs, report me  <a href="https://github.com/0liverFlow/ArchiveToolKit/issues">here</a> 
+2. For any interesting idea, thanks to ping me at <a href="mailto:0liverFlow@proton.me">0liverFlow</a>
